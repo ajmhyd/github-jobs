@@ -9,7 +9,7 @@ import {
 import Layout from '../components/Layout';
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
+  <Layout title="Github Jobs">
     <h1>Hello Next.js 👋</h1>
     <p>
       <Link href="/about">
