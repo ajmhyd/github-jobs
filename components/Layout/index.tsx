@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { useColorMode } from '@chakra-ui/core';
+import { useColorMode, Container } from '@chakra-ui/core';
 import Header from './Header';
 import Footer from './Footer';
 import Head from 'next/head';
@@ -23,13 +23,15 @@ const Layout = ({ children, title = 'Github Jobs' }: Props) => {
           <link rel="icon" href="/faviconWhite.ico" />
         }
       </Head>
-      <header>
-        <Header />
-      </header>
-      {children}
-      <footer>
-        <Footer />
-      </footer>
+      <Container maxW="lg" py="4">
+        <header>
+          <Header />
+        </header>
+        {children}
+        <footer>
+          <Footer />
+        </footer>
+      </Container>
     </div>
   )
 };

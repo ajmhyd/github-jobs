@@ -1,5 +1,4 @@
 import {
-  Container,
   Flex,
   IconButton,
   Spacer,
@@ -16,26 +15,24 @@ const Header = () => {
   const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);
 
   return (
-    <Container maxW="lg" py="4">
-      <Flex>
-        <Text fontSize="2xl" fontWeight="bold">
-          Github
+    <Flex>
+      <Text fontSize="2xl" fontWeight="bold">
+        Github
         </Text>
         &nbsp;
-        <Text fontSize="2xl">Jobs</Text>
-        <Spacer />
-        <IconButton
-          size="md"
-          fontSize="lg"
-          aria-label={`Switch to ${text} mode`}
-          variant="ghost"
-          color="current"
-          marginLeft="2"
-          onClick={toggleMode}
-          icon={<SwitchIcon />}
-        />
-      </Flex>
-    </Container>
+      <Text fontSize="2xl">Jobs</Text>
+      <Spacer />
+      <IconButton
+        size="md"
+        fontSize="lg"
+        aria-label={`Switch to ${text} mode`}
+        variant="ghost"
+        color="current"
+        marginLeft="2"
+        onClick={toggleMode}
+        icon={<SwitchIcon />}
+      />
+    </Flex>
   );
 };
 

@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Container,
   Input,
@@ -8,7 +7,6 @@ import {
   InputRightElement,
 } from '@chakra-ui/core';
 import {
-  Search as SearchIcon,
   Briefcase as BriefcaseIcon,
 } from 'react-feather';
 
@@ -24,8 +22,7 @@ const Search = () => {
           placeholder="Title, companies, expertise or benefits"
           focusBorderColor="blue.200"
           borderRadius="md"
-          id="algolia-search"
-          aria-label="Search Chakra UI docs"
+          aria-label="Search for jobs"
           size="lg"
         />
         <InputRightElement width="5.5rem">

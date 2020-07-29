@@ -1,32 +1,24 @@
-import Link from 'next/link';
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  Button,
-} from '@chakra-ui/core';
 import Layout from '../components/Layout';
+import List from '../components/List';
+import Location from '../components/Location';
 import Search from '../components/Search';
+import useJobs from '../hooks/useJobs';
 
-const IndexPage = () => (
-  <Layout title="Github Jobs">
-    <Search />
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-      <Accordion allowToggle>
-        <AccordionItem>
-          <AccordionButton>Accordion 1</AccordionButton>
-          <AccordionPanel>Welcome home</AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-      <Button colorScheme="red" marginTop="40px">
-        Welcome
-      </Button>
-    </p>
-  </Layout>
-);
+import { Box } from '@chakra-ui/core';
+
+const IndexPage = () => {
+
+  const { jobs, isLoading, isError } = useJobs();
+
+  return (
+    <Layout title="Github Jobs">
+      <Search />
+      <Box display={{ md: "flex" }} alignItems="flex-start">
+        <Location />
+        <List items={jobs} isLoading={isLoading} />
+      </Box>
+    </Layout>
+  )
+}
 
 export default IndexPage;
