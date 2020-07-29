@@ -5,23 +5,24 @@ import {
   Spacer,
   Text,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/core';
 
-import {
-  Sun as SunIcon,
-  Moon as MoonIcon
-} from 'react-feather';
+import { Sun as SunIcon, Moon as MoonIcon } from 'react-feather';
 
 const Header = () => {
   const { toggleColorMode: toggleMode } = useColorMode();
-  const text = useColorModeValue("dark", "light")
+  const text = useColorModeValue('dark', 'light');
   const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);
 
   return (
     <Container maxW="lg" py="4">
       <Flex>
-        <Text>Github Job</Text>
+        <Text fontSize="2xl" fontWeight="bold">
+          Github
+        </Text>
+        &nbsp;
+        <Text fontSize="2xl">Jobs</Text>
         <Spacer />
         <IconButton
           size="md"
@@ -35,7 +36,7 @@ const Header = () => {
         />
       </Flex>
     </Container>
-  )
+  );
 };
 
 export default Header;

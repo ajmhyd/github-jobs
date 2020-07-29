@@ -7,10 +7,11 @@ import {
   Button,
 } from '@chakra-ui/core';
 import Layout from '../components/Layout';
+import Search from '../components/Search';
 
 const IndexPage = () => (
   <Layout title="Github Jobs">
-    <h1>Hello Next.js 👋</h1>
+    <Search />
     <p>
       <Link href="/about">
         <a>About</a>
