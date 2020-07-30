@@ -1,19 +1,29 @@
 import {
   Box,
-  Checkbox, CheckboxGroup, Input,
+  Checkbox,
+  CheckboxGroup,
+  Input,
   InputGroup,
-  InputLeftElement, Text,
+  InputLeftElement,
+  Text,
   VStack,
 } from '@chakra-ui/core';
 
 import { Compass as CompassIcon } from 'react-feather';
 
 const Location = () => {
-
   return (
-    <Box maxW="xs" py="4">
+    <Box maxW="xs" w="50%" py="4">
       <Checkbox>Full Time</Checkbox>
-      <Text fontSize="sm" textTransform="uppercase" fontWeight="bold" color="gray" py="4">Location</Text>
+      <Text
+        fontSize="sm"
+        textTransform="uppercase"
+        fontWeight="bold"
+        color="gray"
+        py="4"
+      >
+        Location
+      </Text>
       <InputGroup variant="filled" size="md">
         <InputLeftElement
           width="3rem"
@@ -27,7 +37,7 @@ const Location = () => {
           size="lg"
         />
       </InputGroup>
-      <CheckboxGroup >
+      <CheckboxGroup>
         <VStack align="flex-start" py="4">
           <Checkbox value="chicago">Chicago</Checkbox>
           <Checkbox value="newyork">New York</Checkbox>
@@ -37,7 +47,7 @@ const Location = () => {
         </VStack>
       </CheckboxGroup>
     </Box>
-  )
-}
+  );
+};
 
 export default Location;
