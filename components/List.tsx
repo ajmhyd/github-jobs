@@ -1,6 +1,6 @@
 import ListItem from './ListItem';
 import { Job } from '../interfaces';
-import { Box, SkeletonCircle, SkeletonText } from '@chakra-ui/core';
+import { Box, Flex, List, SkeletonCircle, SkeletonText } from '@chakra-ui/core';
 
 type Props = {
   items: Job[];
@@ -9,25 +9,25 @@ type Props = {
 
 const SKELETON = [1, 2, 3, 4, 5];
 
-const List = ({ items, isLoading }: Props) => (
+const JobsList = ({ items, isLoading }: Props) => (
   <Box w="100%" p={4}>
-    {!isLoading ? (
+    {isLoading ? (
       <>
         {SKELETON.map((item, index) => (
-          <Box p="4" m="5" boxShadow="lg" bg="gray" key={index}>
+          <Box p="2" m="2" boxShadow="lg" bg="gray" key={index}>
             <SkeletonCircle size="10" />
-            <SkeletonText mt="4" noOfLines={2} spacing="4" />
+            <SkeletonText mt="2" noOfLines={2} spacing="2" />
           </Box>
         ))}
       </>
     ) : (
-      <ul>
-        {items?.map((item) => (
-          <li key={item.id}>{item.company}</li>
-        ))}
-      </ul>
-    )}
+        <List spacing={3}>
+          {items?.map((item) => (
+            <ListItem key={item.id} data={item} />
+          ))}
+        </List>
+      )}
   </Box>
 );
 
-export default List;
+export default JobsList;

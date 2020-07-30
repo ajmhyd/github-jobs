@@ -13,7 +13,7 @@ import { Compass as CompassIcon } from 'react-feather';
 
 const Location = () => {
   return (
-    <Box maxW="xs" w="50%" py="4">
+    <Box maxW="xs" w="100%" py="4">
       <Checkbox>Full Time</Checkbox>
       <Text
         fontSize="sm"
