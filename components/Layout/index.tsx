@@ -17,13 +17,13 @@ const Layout = ({ children, title = 'Github Jobs' }: Props) => {
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {colorMode === "light" ?
+        {colorMode === 'light' ? (
           <link rel="icon" href="/faviconBlack.ico" />
-          :
+        ) : (
           <link rel="icon" href="/faviconWhite.ico" />
-        }
+        )}
       </Head>
-      <Container maxW="lg" py="4">
+      <Container maxW="xl" py="4">
         <header>
           <Header />
         </header>
@@ -33,7 +33,7 @@ const Layout = ({ children, title = 'Github Jobs' }: Props) => {
         </footer>
       </Container>
     </div>
-  )
+  );
 };
 
 export default Layout;
