@@ -11,10 +11,22 @@ import {
 
 import { Compass as CompassIcon } from 'react-feather';
 
-const Location = () => {
+type Props = {
+  fullTime: boolean;
+  locations: string[];
+  setFullTime: (fullTime: boolean) => void;
+  setLocations: (locations: string[]) => void;
+}
+
+const Location = ({ fullTime, setFullTime, locations, setLocations }: Props) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  };
+  console.log(locations);
   return (
     <Box maxW="xs" w="100%" py="4">
-      <Checkbox>Full Time</Checkbox>
+      {/* update to switch */}
+      <Checkbox isChecked={fullTime} onChange={() => setFullTime(!fullTime)}>Full Time</Checkbox>
       <Text
         fontSize="sm"
         textTransform="uppercase"
@@ -37,15 +49,15 @@ const Location = () => {
           size="lg"
         />
       </InputGroup>
-      <CheckboxGroup>
+      {/* Update to SELECT */}
+      {/* <CheckboxGroup onChange={handleChange} value={locations}>
         <VStack align="flex-start" py="4">
           <Checkbox value="chicago">Chicago</Checkbox>
           <Checkbox value="newyork">New York</Checkbox>
           <Checkbox value="losangeles">Los Angeles</Checkbox>
           <Checkbox value="austin">Austin</Checkbox>
-          <Checkbox value="miami">Miami</Checkbox>
         </VStack>
-      </CheckboxGroup>
+      </CheckboxGroup> */}
     </Box>
   );
 };

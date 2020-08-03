@@ -20,10 +20,10 @@ const Layout = ({ children, title = 'Github Jobs' }: Props) => {
         {colorMode === 'light' ? (
           <link rel="icon" href="/faviconBlack.ico" />
         ) : (
-          <link rel="icon" href="/faviconWhite.ico" />
-        )}
+            <link rel="icon" href="/faviconWhite.ico" />
+          )}
       </Head>
-      <Container maxW="xl" py="4">
+      <Container maxW="xl" pt="4">
         <header>
           <Header />
         </header>

@@ -2,8 +2,8 @@ import useSWR from 'swr';
 import fetch from '../lib/fetch';
 import { Job } from '../interfaces';
 
-const useJobs = () => {
-  const { data, error } = useSWR<Job[]>('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json', fetch);
+const useJobs = (query: string) => {
+  const { data, error } = useSWR<Job[]>(query, fetch);
 
   return {
     jobs: data,

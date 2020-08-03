@@ -5,7 +5,6 @@ import {
   Image,
   ListItem,
   Stack,
-  Spacer,
   Text,
   Wrap,
 } from '@chakra-ui/core';
@@ -48,7 +47,7 @@ const ListJobItem = ({ data }: Props) => (
           <Flex align="center" ml={2}>
             <ClockIcon size={12} />
             <Text fontSize="xs" mx={1}>
-              {moment(data.created_at).startOf('day').fromNow()}
+              {moment(new Date(data.created_at)).startOf('day').fromNow()}
             </Text>
           </Flex>
         </Flex>
