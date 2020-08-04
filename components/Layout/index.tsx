@@ -18,9 +18,9 @@ const Layout = ({ children, title = 'Github Jobs' }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         {colorMode === 'light' ? (
-          <link rel="icon" href="/faviconBlack.ico" />
+          <link rel="icon" href="/favicon/faviconBlack.ico" />
         ) : (
-            <link rel="icon" href="/faviconWhite.ico" />
+            <link rel="icon" href="/favicon/faviconWhite.ico" />
           )}
       </Head>
       <Container maxW="xl" pt="4">

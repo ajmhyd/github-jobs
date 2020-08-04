@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Job } from '../interfaces';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import { Box, Center, useColorModeValue } from '@chakra-ui/core';
+import { Box, Center, SkeletonCircle, SkeletonText, useColorModeValue } from '@chakra-ui/core';
 import queryString from 'query-string';
 
 import Layout from '../components/Layout';
@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => createStyles({
 const IndexPage = () => {
   const [page, setPage] = useState(1);
   const [fullTime, setFullTime] = useState(false);
+  const [search, setSearch] = useState("");
   const [location, setLocation] = useState("all");
   const color = useColorModeValue("rgba(0, 0, 0, 0.87)", "rgba(255,255,255,0.92)");
   const borderColor = useColorModeValue("rgba(0, 0, 0, 0.23)", "rgba(255,255,255,0.92)");
@@ -32,10 +33,10 @@ const IndexPage = () => {
   let query = queryString.stringifyUrl({
     url: 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json', query: {
       full_time: fullTime as unknown as string,
-      location: location
+      location: location === 'all' ? null : location,
+      search: search === "" ? null : search
     }
   })
-
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -51,12 +52,27 @@ const IndexPage = () => {
     let lower = upper - 5;
     return items?.slice(lower, upper);
   }
+
+  const SKELETON = [1, 2, 3, 4, 5];
   return (
     <Layout title="Github Jobs">
-      <Search />
+      <Search search={search} setSearch={setSearch} />
       <Box display={{ md: "flex" }} alignItems="flex-start">
         <Location fullTime={fullTime} setFullTime={setFullTime} location={location} setLocation={setLocation} />
-        <List items={paginatedItems(jobs, page)} isLoading={isLoading} />
+        <Box w="100%" p={4}>
+          {isLoading ? (
+            <>
+              {SKELETON.map((item, index) => (
+                <Box p="2" m="2" boxShadow="lg" bg="gray" key={index}>
+                  <SkeletonCircle size="10" />
+                  <SkeletonText mt="2" noOfLines={2} spacing="2" />
+                </Box>
+              ))}
+            </>
+          ) : (
+              <List items={paginatedItems(jobs, page)} />
+            )}
+        </Box>
       </Box>
       {
         jobs?.length > 5 && (

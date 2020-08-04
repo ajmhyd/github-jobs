@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   Box,
   Button,
+  CloseButton,
   Flex,
   FormControl,
   FormLabel,
@@ -29,13 +30,19 @@ const Location = ({ fullTime, setFullTime, location, setLocation }: Props) => {
   const [locationInput, setLocationInput] = useState("");
   const handleClick = () => {
     setLocation(locationInput);
-    setLocationInput("");
   }
-  const handleKeydown = e => {
+  const handleKeydown = (e) => {
     if (e.key === 'Enter') {
       setLocation(locationInput);
-      setLocationInput("");
     }
+  }
+  const handleChange = (e) => {
+    setLocationInput("");
+    setLocation(e);
+  }
+  const handleClear = () => {
+    setLocationInput("");
+    setLocation("all");
   }
   return (
     <Box maxW="xs" w="100%" py="4">
@@ -67,13 +74,14 @@ const Location = ({ fullTime, setFullTime, location, setLocation }: Props) => {
           onChange={(e) => setLocationInput(e.target.value)}
           onKeyDown={handleKeydown}
         />
-        <InputRightElement width="5.5rem">
+        <InputRightElement width="7.5rem">
           <Button size="sm" colorScheme="blue" onClick={handleClick}>
             Search
           </Button>
+          <CloseButton size="md" onClick={handleClear} />
         </InputRightElement>
       </InputGroup>
-      <RadioGroup onChange={(e: string) => setLocation(e)} value={location}>
+      <RadioGroup onChange={handleChange} value={location}>
         <VStack align="flex-start" py="4">
           <Radio value="chicago">Chicago</Radio>
           <Radio value="newyork">New York</Radio>
