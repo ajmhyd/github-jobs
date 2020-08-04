@@ -1,19 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Job } from '../interfaces';
+import { createStyles, makeStyles } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
+import { Box, Center, useColorModeValue } from '@chakra-ui/core';
+import queryString from 'query-string';
+
 import Layout from '../components/Layout';
 import List from '../components/List';
 import Location from '../components/Location';
 import Search from '../components/Search';
 import useJobs from '../hooks/useJobs';
 
-import { Job } from '../interfaces';
-import { Pagination } from '@material-ui/lab';
-import { Box, Center } from '@chakra-ui/core';
-import queryString from 'query-string';
+const useStyles = makeStyles(() => createStyles({
+  root: props => ({
+    '& button': {
+      color: props.color,
+      borderColor: props.borderColor,
+    },
+  })
+}));
 
 const IndexPage = () => {
   const [page, setPage] = useState(1);
   const [fullTime, setFullTime] = useState(false);
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("all");
+  const color = useColorModeValue("rgba(0, 0, 0, 0.87)", "rgba(255,255,255,0.92)");
+  const borderColor = useColorModeValue("rgba(0, 0, 0, 0.23)", "rgba(255,255,255,0.92)");
+  const props = { color, borderColor };
+  const classes = useStyles(props);
 
   let query = queryString.stringifyUrl({
     url: 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json', query: {
@@ -22,7 +36,6 @@ const IndexPage = () => {
     }
   })
 
-  console.log(query);
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -30,9 +43,8 @@ const IndexPage = () => {
   const { jobs, isLoading } = useJobs(query);
   let count = 0;
   if (!isLoading) {
-    count = jobs.length / 5;
+    count = Math.ceil(jobs?.length / 5);
   };
-  console.log(jobs);
 
   const paginatedItems = (items: Job[], page: number): Job[] => {
     let upper = page * 5;
@@ -49,11 +61,10 @@ const IndexPage = () => {
       {
         jobs?.length > 5 && (
           <Center pt={2}>
-            <Pagination count={count} page={page} onChange={handleChange} shape="rounded" variant="outlined" />
+            <Pagination count={count} page={page} onChange={handleChange} shape="rounded" variant="outlined" className={classes.root} />
           </Center>
         )
       }
-
     </Layout>
   )
 }

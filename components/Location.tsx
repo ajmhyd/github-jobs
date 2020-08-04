@@ -1,10 +1,17 @@
+import { useState } from 'react';
 import {
   Box,
-  Checkbox,
-  CheckboxGroup,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
+  Radio,
+  RadioGroup,
+  Switch,
   Text,
   VStack,
 } from '@chakra-ui/core';
@@ -13,20 +20,29 @@ import { Compass as CompassIcon } from 'react-feather';
 
 type Props = {
   fullTime: boolean;
-  locations: string[];
+  location: string;
   setFullTime: (fullTime: boolean) => void;
-  setLocations: (locations: string[]) => void;
+  setLocation: (location: string) => void;
 }
 
-const Location = ({ fullTime, setFullTime, locations, setLocations }: Props) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-  };
-  console.log(locations);
+const Location = ({ fullTime, setFullTime, location, setLocation }: Props) => {
+  const [locationInput, setLocationInput] = useState("");
+  const handleClick = () => {
+    setLocation(locationInput);
+    setLocationInput("");
+  }
+  const handleKeydown = e => {
+    if (e.key === 'Enter') {
+      setLocation(locationInput);
+      setLocationInput("");
+    }
+  }
   return (
     <Box maxW="xs" w="100%" py="4">
-      {/* update to switch */}
-      <Checkbox isChecked={fullTime} onChange={() => setFullTime(!fullTime)}>Full Time</Checkbox>
+      <FormControl as={Flex}>
+        <Switch isChecked={fullTime} onChange={() => setFullTime(!fullTime)} id="full-time" />
+        <FormLabel htmlFor="full-time" ml={2}>Full Time</FormLabel>
+      </FormControl>
       <Text
         fontSize="sm"
         textTransform="uppercase"
@@ -47,17 +63,24 @@ const Location = ({ fullTime, setFullTime, locations, setLocations }: Props) => 
           borderRadius="md"
           aria-label="Search by location"
           size="lg"
+          value={locationInput}
+          onChange={(e) => setLocationInput(e.target.value)}
+          onKeyDown={handleKeydown}
         />
+        <InputRightElement width="5.5rem">
+          <Button size="sm" colorScheme="blue" onClick={handleClick}>
+            Search
+          </Button>
+        </InputRightElement>
       </InputGroup>
-      {/* Update to SELECT */}
-      {/* <CheckboxGroup onChange={handleChange} value={locations}>
+      <RadioGroup onChange={(e: string) => setLocation(e)} value={location}>
         <VStack align="flex-start" py="4">
-          <Checkbox value="chicago">Chicago</Checkbox>
-          <Checkbox value="newyork">New York</Checkbox>
-          <Checkbox value="losangeles">Los Angeles</Checkbox>
-          <Checkbox value="austin">Austin</Checkbox>
+          <Radio value="chicago">Chicago</Radio>
+          <Radio value="newyork">New York</Radio>
+          <Radio value="losangeles">Los Angeles</Radio>
+          <Radio value="austin">Austin</Radio>
         </VStack>
-      </CheckboxGroup> */}
+      </RadioGroup>
     </Box>
   );
 };
