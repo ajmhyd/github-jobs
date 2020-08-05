@@ -11,8 +11,13 @@ import Location from '../components/Location';
 import Search from '../components/Search';
 import useJobs from '../hooks/useJobs';
 
+type Props = {
+  color: string;
+  borderColor: string;
+}
+
 const useStyles = makeStyles(() => createStyles({
-  root: props => ({
+  root: (props: Props) => ({
     '& button': {
       color: props.color,
       borderColor: props.borderColor,
