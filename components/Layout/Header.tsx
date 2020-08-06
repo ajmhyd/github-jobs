@@ -6,10 +6,10 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/core';
-
-import { Sun as SunIcon, Moon as MoonIcon } from 'react-feather';
+import { Moon as MoonIcon, Sun as SunIcon } from 'react-feather';
 
 const Header = () => {
+
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue('dark', 'light');
   const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);

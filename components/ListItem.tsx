@@ -9,9 +9,9 @@ import {
   Wrap,
   useColorModeValue,
 } from '@chakra-ui/core';
-import { Clock as ClockIcon, Compass as CompassIcon } from 'react-feather';
-import moment from 'moment';
 import Link from 'next/link';
+import moment from 'moment';
+import { Clock as ClockIcon, Compass as CompassIcon } from 'react-feather';
 
 import { Job } from '../interfaces';
 
@@ -20,7 +20,9 @@ type Props = {
 };
 
 const ListJobItem = ({ data }: Props) => {
+
   const fallbackImage = useColorModeValue("/img/GitHub-Mark-120px-plus.png", "/img/GitHub-Mark-Light-120px-plus.png");
+
   return (
     <Link href="/jobs/[id]" as={`/jobs/${data.id}`}>
       <a>

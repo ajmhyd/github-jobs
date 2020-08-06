@@ -16,7 +16,6 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/core';
-
 import { Compass as CompassIcon } from 'react-feather';
 
 type Props = {
@@ -27,23 +26,29 @@ type Props = {
 }
 
 const Location = ({ fullTime, setFullTime, location, setLocation }: Props) => {
+
   const [locationInput, setLocationInput] = useState("");
+
+  const handleClear = () => {
+    setLocationInput("");
+    setLocation("all");
+  }
+
   const handleClick = () => {
     setLocation(locationInput);
   }
+
+  const handleChange = (e) => {
+    setLocationInput("");
+    setLocation(e);
+  }
+
   const handleKeydown = (e) => {
     if (e.key === 'Enter') {
       setLocation(locationInput);
     }
   }
-  const handleChange = (e) => {
-    setLocationInput("");
-    setLocation(e);
-  }
-  const handleClear = () => {
-    setLocationInput("");
-    setLocation("all");
-  }
+
   return (
     <Box maxW="xs" w="100%" py="4">
       <FormControl as={Flex}>

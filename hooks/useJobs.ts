@@ -1,6 +1,7 @@
 import useSWR from 'swr';
-import fetch from '../lib/fetch';
+
 import { Job } from '../interfaces';
+import fetch from '../lib/fetch';
 
 const useJobs = (query: string) => {
   const { data, error } = useSWR<Job[]>(query, fetch);

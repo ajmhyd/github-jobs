@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Job } from '../interfaces';
+import { Box, Center, SkeletonCircle, SkeletonText, useColorModeValue } from '@chakra-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import { Box, Center, SkeletonCircle, SkeletonText, useColorModeValue } from '@chakra-ui/core';
 import queryString from 'query-string';
 
+import { Job } from '../interfaces';
 import Layout from '../components/Layout';
 import List from '../components/List';
 import Location from '../components/Location';
@@ -15,6 +15,8 @@ type Props = {
   color: string;
   borderColor: string;
 }
+
+const SKELETON = [1, 2, 3, 4, 5];
 
 const useStyles = makeStyles(() => createStyles({
   root: (props: Props) => ({
@@ -30,10 +32,13 @@ const IndexPage = () => {
   const [fullTime, setFullTime] = useState(false);
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("all");
+
   const color = useColorModeValue("rgba(0, 0, 0, 0.87)", "rgba(255,255,255,0.92)");
   const borderColor = useColorModeValue("rgba(0, 0, 0, 0.23)", "rgba(255,255,255,0.92)");
   const props = { color, borderColor };
   const classes = useStyles(props);
+
+  let count = 0;
 
   let query = queryString.stringifyUrl({
     url: 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json', query: {
@@ -43,11 +48,13 @@ const IndexPage = () => {
     }
   })
 
+  const { jobs, isLoading } = useJobs(query);
+
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
-  const { jobs, isLoading } = useJobs(query);
-  let count = 0;
+
+
   if (!isLoading) {
     count = Math.ceil(jobs?.length / 5);
   };
@@ -58,7 +65,6 @@ const IndexPage = () => {
     return items?.slice(lower, upper);
   }
 
-  const SKELETON = [1, 2, 3, 4, 5];
   return (
     <Layout title="Github Jobs">
       <Search search={search} setSearch={setSearch} />

@@ -1,11 +1,11 @@
+import { Heading, List } from '@chakra-ui/core';
+
 import ListItem from './ListItem';
 import { Job } from '../interfaces';
-import { Heading, List } from '@chakra-ui/core';
 
 type Props = {
   items: Job[];
 };
-
 
 const JobsList = ({ items }: Props) => (
   <>

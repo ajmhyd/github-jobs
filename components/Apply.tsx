@@ -1,7 +1,8 @@
+import { Button, Text } from '@chakra-ui/core';
 import Link from 'next/link';
 import { ArrowLeft as ArrowLeftIcon } from 'react-feather';
-import { Button, Text } from '@chakra-ui/core';
 import ReactMarkdown from 'react-markdown';
+
 type Props = {
   howToApply: string;
 }
@@ -17,10 +18,11 @@ const Apply = ({ howToApply }: Props) => {
         </Button>
         </Text>
       </Link>
-      <div>
+      <Text fontSize="sm" fontWeight="bold" textTransform="uppercase"
+        color="gray" my={2}>How To Apply</Text>
+      <Text fontSize="sm">
         <ReactMarkdown source={howToApply} />
-      </div>
-
+      </Text>
     </>
   );
 }

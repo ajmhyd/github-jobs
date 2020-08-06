@@ -8,9 +8,7 @@ import {
   InputLeftElement,
   InputRightElement,
 } from '@chakra-ui/core';
-import {
-  Briefcase as BriefcaseIcon,
-} from 'react-feather';
+import { Briefcase as BriefcaseIcon } from 'react-feather';
 
 type Props = {
   search: string;

@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
-import { useColorMode, Container } from '@chakra-ui/core';
-import Header from './Header';
-import Footer from './Footer';
+import { Container, useColorMode } from '@chakra-ui/core';
 import Head from 'next/head';
+
+import Footer from './Footer';
+import Header from './Header';
 
 type Props = {
   children?: ReactNode;
@@ -10,7 +11,9 @@ type Props = {
 };
 
 const Layout = ({ children, title = 'Github Jobs' }: Props) => {
+
   const { colorMode } = useColorMode();
+
   return (
     <div>
       <Head>
