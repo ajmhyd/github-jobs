@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Container, useColorMode } from '@chakra-ui/core';
+import { Container, useColorMode } from '@chakra-ui/react';
 import Head from 'next/head';
 
 import Footer from './Footer';
@@ -11,22 +11,21 @@ type Props = {
 };
 
 const Layout = ({ children, title = 'Github Jobs' }: Props) => {
-
   const { colorMode } = useColorMode();
 
   return (
     <div>
       <Head>
         <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta charSet='utf-8' />
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         {colorMode === 'light' ? (
-          <link rel="icon" href="/favicon/faviconBlack.ico" />
+          <link rel='icon' href='/favicon/faviconBlack.ico' />
         ) : (
-            <link rel="icon" href="/favicon/faviconWhite.ico" />
-          )}
+          <link rel='icon' href='/favicon/faviconWhite.ico' />
+        )}
       </Head>
-      <Container maxW="xl" pt="4">
+      <Container maxW='6xl' pt='4'>
         <header>
           <Header />
         </header>

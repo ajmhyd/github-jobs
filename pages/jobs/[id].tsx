@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 
 import { Job } from '../../interfaces';
@@ -8,30 +8,31 @@ import ListDetail from '../../components/ListDetail';
 
 type Props = {
   job: Job;
-}
+};
 
 const JobDetailPage = ({ job }: Props) => {
-
   return (
     <Layout title={`Github Jobs | ${job.company}`}>
       <Box display={{ md: 'flex' }}>
-        <Box maxW="xs" mr={4}>
+        <Box maxW='xs' mr={4}>
           <Apply howToApply={job.how_to_apply} />
         </Box>
         <ListDetail job={job} />
       </Box>
     </Layout>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params;
-  const res = await fetch(`https://jobs.github.com/positions/${id}.json?markdown=true`);
+  const res = await fetch(
+    `https://jobs.github.com/positions/${id}.json?markdown=true`
+  );
   const job = await res.json();
 
   return {
-    props: { job }
-  }
-}
+    props: { job },
+  };
+};
 
 export default JobDetailPage;
