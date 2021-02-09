@@ -9,7 +9,7 @@ type Props = {
 
 const JobsList = ({ items }: Props) => (
   <>
-    {items.length > 0 ? (
+    {items?.length > 0 ? (
       <List spacing={3}>
         {items?.map((item) => (
           <ListItem key={item.id} data={item} />

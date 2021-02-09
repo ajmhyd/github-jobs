@@ -56,7 +56,7 @@ const IndexPage = () => {
 
   let query = queryString.stringifyUrl({
     url:
-      'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json',
+      'https://thingproxy.freeboard.io/fetch/https://jobs.github.com/positions.json',
     query: {
       full_time: (fullTime as unknown) as string,
       location: location === 'all' ? null : location,
