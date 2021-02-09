@@ -35,7 +35,7 @@ const ListJobItem = ({ data }: Props) => {
             transition: 'transform .5s',
           }}
         >
-          <Box d='flex' padding='4' bg='gray' boxShadow='lg'>
+          <Box d='flex' padding='4' boxShadow='lg'>
             <Image
               borderRadius='sm'
               src={data.company_logo}
